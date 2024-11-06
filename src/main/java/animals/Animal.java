@@ -1,6 +1,7 @@
+package animals;
 import java.util.ArrayList;
 
-public class Animal {
+public abstract class Animal {
     private String name;
     private Integer age;
     private Integer weight;
@@ -72,12 +73,10 @@ public class Animal {
         }
 
     }
-
     @Override
     public String toString() {
         return "Привет! меня зовут "+name+", мне "+age+" "+TypeYear()+", я вешу - "+weight+" кг, мой цвет - "+color;
     }
 
-    static ArrayList<Animal> animals = new ArrayList<Animal>();
 
 }

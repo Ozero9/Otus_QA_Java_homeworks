@@ -1,7 +1,13 @@
+package animals;
+import animals.data.Command;
+import animals.factory.AnimalFactory;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CommandApp {
     public static void typeCommand() {
+        ArrayList<AnimalFactory> animals = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while (!exit) {
@@ -17,10 +23,11 @@ public class CommandApp {
                 case ADD:
                     System.out.println("Вы ввели команду add");
                     PetsApp.typePets();
+
                     break;
                 case LIST:
                     System.out.println("Вы ввели команду list");
-                    System.out.println(Animal.animals.toString());
+                    //System.out.println(Animal.animals.toString());
                     break;
                 case EXIT:
                     exit = true;
