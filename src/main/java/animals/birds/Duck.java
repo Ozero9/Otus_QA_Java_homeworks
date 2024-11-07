@@ -7,8 +7,8 @@ public class Duck extends Animal implements Flying {
         super();
     }
 
-    //@Override
-    public static void Say() {
+    @Override
+    public void Say() {
         System.out.println("Кря");
     }
     public void Fly() {

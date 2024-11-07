@@ -6,15 +6,11 @@ import animals.pets.Cat;
 import animals.pets.Dog;
 import java.util.Scanner;
 
-public class AnimalFactory extends Animal {
+public class AnimalFactory {
 
     public Animal create(AnimalData animalData) {
 
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        AnimalData typevalue = AnimalData.fromString(input);
-
-        switch(typevalue){
+        switch(animalData){
             case DUCK: {
                 System.out.println("Вы выбрали Duck");
                 return new Duck();
@@ -29,5 +25,11 @@ public class AnimalFactory extends Animal {
             }
         }
         return null;
+    }
+
+    public AnimalData askForAnimalType(Scanner scanner) {
+        System.out.println("Введите тип животного (duck/dog/cat):");
+        String input = scanner.nextLine();
+        return AnimalData.fromString(input);
     }
 }

@@ -1,5 +1,5 @@
 package animals;
-import java.util.ArrayList;
+
 
 public abstract class Animal {
     private String name;
@@ -20,11 +20,12 @@ public abstract class Animal {
     }
 
     public void setAge(Integer age) {
-        if(age >= 0&&age <= 10) {
-            this.age = age;
-        } else {
-            System.out.println("Ошибка! Возраст не может быть отрицательным числом или больше 10!");
-        }
+
+            if (age >= 0 && age <= 10) {
+                this.age = age;
+            } else {
+                System.out.println("Ошибка! Возраст не может быть отрицательным числом или больше 10!");
+            }
     }
 
     public Integer getWeight() {
@@ -47,7 +48,7 @@ public abstract class Animal {
         this.color = color;
     }
 
-    public static void Say() {
+    public void Say() {
         System.out.println("Я говорю");
     }
 
@@ -61,7 +62,7 @@ public abstract class Animal {
         System.out.println("Я ем");
     }
 
-    public String TypeYear() {
+    public String typeYear() {
         if (age < 2) {
             return "год";
         } else {
@@ -75,8 +76,6 @@ public abstract class Animal {
     }
     @Override
     public String toString() {
-        return "Привет! меня зовут "+name+", мне "+age+" "+TypeYear()+", я вешу - "+weight+" кг, мой цвет - "+color;
+        return "Привет! меня зовут "+name+", мне "+age+" "+typeYear()+", я вешу - "+weight+" кг, мой цвет - "+color;
     }
-
-
 }

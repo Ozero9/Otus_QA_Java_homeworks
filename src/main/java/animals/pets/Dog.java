@@ -5,8 +5,8 @@ public class Dog extends Animal {
         super();
     }
 
-    //@Override
-    public static void Say() {
+    @Override
+    public void Say() {
         System.out.println("Гав");
     }
 }

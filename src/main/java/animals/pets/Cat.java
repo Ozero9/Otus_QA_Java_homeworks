@@ -7,8 +7,8 @@ public class Cat extends Animal {
         super();
     }
 
-    //@Override
-   public static void Say() {
+    @Override
+   public void Say() {
        System.out.println("Мяу");
    }
 }

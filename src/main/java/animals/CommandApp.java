@@ -23,7 +23,6 @@ public class CommandApp {
                 case ADD:
                     System.out.println("Вы ввели команду add");
                     PetsApp.typePets();
-
                     break;
                 case LIST:
                     System.out.println("Вы ввели команду list");

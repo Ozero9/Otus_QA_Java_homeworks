@@ -6,9 +6,14 @@ public enum AnimalData {
     DUCK;
 
     public static AnimalData fromString(String command) {
-        return AnimalData.valueOf(command.trim().toUpperCase());
+        try {
+
+            return AnimalData.valueOf(command.trim().toUpperCase());
+        } catch (IllegalArgumentException e)
+        {
+            return null;}
     }
-    }
+}
 
 
 

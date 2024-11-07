@@ -1,4 +1,6 @@
-.idea
+.idea/
 *.iml
 target
 .xml
+src/main/java/animals/CommandApp.java
+src/main/java/animals/PetsApp.java
