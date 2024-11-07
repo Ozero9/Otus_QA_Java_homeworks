@@ -24,7 +24,7 @@ public abstract class Animal {
             if (age >= 0 && age <= 10) {
                 this.age = age;
             } else {
-                System.out.println("Ошибка! Возраст не может быть отрицательным числом или больше 10!");
+                this.age = null;
             }
     }
 
@@ -36,7 +36,7 @@ public abstract class Animal {
         if (weight >= 0) {
             this.weight = weight;
         } else {
-            System.out.println("Ошибка! Вес не может быть отрицательным числом!");
+            this.weight = null;
         }
     }
 
