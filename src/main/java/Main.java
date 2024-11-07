@@ -59,7 +59,6 @@ public class Main {
                     animal.setColor(scanner.nextLine());
                     animals.add(animal);
                     animal.Say();
-
                     break;
                 case LIST:
                     System.out.println("Вы ввели команду list");
@@ -75,9 +74,7 @@ public class Main {
                 default:
                     System.out.println("Вы ввели несуществующую команду");
             }
-
         }
         scanner.close();
     }
-
 }
