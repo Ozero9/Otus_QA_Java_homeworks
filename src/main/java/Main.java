@@ -1,7 +1,7 @@
 import animals.Animal;
-import animals.data.AnimalData;
-import animals.data.Command;
-import animals.factory.AnimalFactory;
+import data.AnimalData;
+import data.Command;
+import factory.AnimalFactory;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
