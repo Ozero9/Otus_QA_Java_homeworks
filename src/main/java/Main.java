@@ -32,14 +32,18 @@ public class Main {
                     Animal animal = animalFactory.create(animalType);
                     System.out.println("Укажите имя");
                     animal.setName(scanner.nextLine());
-                    System.out.println("Укажите возраст. Возраст может быть не больше 10");
+                    System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
                     try {
                     animal.setAge(scanner.nextInt());
                     } catch (InputMismatchException e) {
                         System.out.println("Ошибка! Введите корректное целое число");
                         scanner.next();
                     }
-                    System.out.println("Укажите вес");
+                    if (animal.getAge() == null) {
+                        System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
+                        continue;
+                    }
+                        System.out.println("Укажите вес");
                     try {
                     animal.setWeight(scanner.nextInt());
                     } catch (InputMismatchException e) {
@@ -47,6 +51,10 @@ public class Main {
                         scanner.next();
                     }
                     scanner.nextLine();
+                    if (animal.getWeight() == null) {
+                        System.out.println("Ошибка! Вес должен быть больше 0");
+                        continue;
+                    }
                     System.out.println("Укажите цвет");
                     animal.setColor(scanner.nextLine());
                     animal.Say();
