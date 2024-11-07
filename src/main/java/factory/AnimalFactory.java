@@ -27,7 +27,7 @@ public class AnimalFactory {
         return null;
     }
 
-    public AnimalData askForAnimalType(Scanner scanner) {
+    public AnimalData askForAnimalType(Scanner scanner) { //Обработка типов животных
         System.out.println("Введите тип животного (duck/dog/cat):");
         String input = scanner.nextLine();
         return AnimalData.fromString(input);
