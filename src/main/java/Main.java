@@ -17,9 +17,8 @@ public class Main {
             String input = scanner.nextLine().trim();
             Command typevalue = Command.fromString(input);
             if (typevalue == null) {
-                System.out.println("Вы не ввели комманду");
+                System.out.println("Ошибка! Такой команды не существует");
                 continue;
-
             }
             switch (typevalue) {
                 case ADD:
@@ -35,12 +34,13 @@ public class Main {
                     System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
                     try {
                     animal.setAge(scanner.nextInt());
+                        if (animal.getAge() == null) {
+                            System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
+                            continue;
+                        }
                     } catch (InputMismatchException e) {
                         System.out.println("Ошибка! Введите корректное целое число");
-                        scanner.next();
-                    }
-                    if (animal.getAge() == null) {
-                        System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
+                        scanner.nextLine();
                         continue;
                     }
                         System.out.println("Укажите вес");
@@ -57,8 +57,9 @@ public class Main {
                     }
                     System.out.println("Укажите цвет");
                     animal.setColor(scanner.nextLine());
-                    animal.Say();
                     animals.add(animal);
+                    animal.Say();
+
                     break;
                 case LIST:
                     System.out.println("Вы ввели команду list");
@@ -74,6 +75,7 @@ public class Main {
                 default:
                     System.out.println("Вы ввели несуществующую команду");
             }
+
         }
         scanner.close();
     }
