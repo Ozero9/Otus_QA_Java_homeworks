@@ -1,7 +1,7 @@
-package animals.factory;
+package factory;
 import animals.Animal;
 import animals.birds.Duck;
-import animals.data.AnimalData;
+import data.AnimalData;
 import animals.pets.Cat;
 import animals.pets.Dog;
 import java.util.Scanner;
