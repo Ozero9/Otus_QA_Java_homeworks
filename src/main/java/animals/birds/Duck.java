@@ -1,6 +1,14 @@
+package animals.birds;
+import animals.Animal;
+
 public class Duck extends Animal implements Flying {
-    //@Override
-    public static void Say() {
+
+    public Duck() {
+        super();
+    }
+
+    @Override
+    public void Say() {
         System.out.println("Кря");
     }
     public void Fly() {
