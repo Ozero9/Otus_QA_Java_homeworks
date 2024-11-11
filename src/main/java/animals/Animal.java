@@ -1,6 +1,11 @@
 package animals;
 
 
+import data.AnimalData;
+import factory.AnimalFactory;
+
+import java.util.Scanner;
+
 public abstract class Animal {
     private String name;
     private Integer age;
@@ -33,7 +38,7 @@ public abstract class Animal {
     }
 
     public void setWeight(Integer weight) {
-        if (weight >= 0) {
+        if (weight > 0) {
             this.weight = weight;
         } else {
             this.weight = null;
@@ -48,17 +53,17 @@ public abstract class Animal {
         this.color = color;
     }
 
-    public void Say() {
+    public void say() {
         System.out.println("Я говорю");
     }
 
-    public void Go () {
+    public void go () {
         System.out.println("Я иду");
     }
-    public void Drink () {
+    public void drink () {
         System.out.println("Я пью");
     }
-    public void Eat () {
+    public void eat () {
         System.out.println("Я ем");
     }
 
@@ -78,4 +83,6 @@ public abstract class Animal {
     public String toString() {
         return "Привет! меня зовут "+name+", мне "+age+" "+typeYear()+", я вешу - "+weight+" кг, мой цвет - "+color;
     }
-}
+
+        }
+
