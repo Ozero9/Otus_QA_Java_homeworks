@@ -14,7 +14,7 @@ public class Main {
         ArrayList<Animal> animals = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         Command typevalue = null;
-        while (typevalue != EXIT) {
+        while (true) {
             System.out.println("Доступные команды add/list/exit");
             String input = scanner.nextLine().trim();
             typevalue = Command.fromString(input);
@@ -30,33 +30,33 @@ public class Main {
                     Animal animal = animalFactory.create(animalType);
                     System.out.println("Укажите имя");
                     animal.setName(scanner.nextLine());
-                    try {
                         while (animal.getAge() == null) {
                             System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
+                            try {
                             animal.setAge(scanner.nextInt());
                             if(animal.getAge() == null) {
                                 System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
                             }
-                        }
-                    } catch (InputMismatchException e) {
-                        System.out.println("Ошибка! Введите корректное целое число");
-                        scanner.nextLine();
-                        continue;
+                        } catch (InputMismatchException e) {
+                                System.out.println("Ошибка! Введите корректное целое число");
+                                scanner.nextLine();
+                                continue;
+                            }
                     }
-                    try {
                         while (animal.getWeight() == null) {
                             System.out.println("Укажите вес. Вес должен быть больше 0");
-                            animal.setWeight(scanner.nextInt());
+                            try {
+                                animal.setWeight(scanner.nextInt());
                             if(animal.getWeight() == null) {
                                 System.out.println("Ошибка! Вес должен быть больше 0");
                             }
-                        }
-                    } catch (InputMismatchException e) {
-                        System.out.println("Ошибка! Введите корректное целое число");
-                        scanner.next();
+                        }catch (InputMismatchException e) {
+                                System.out.println("Ошибка! Введите корректное целое число");
+                                scanner.next();
                     }
-                    scanner.nextLine();
+                    }
                     System.out.println("Укажите цвет");
+                    scanner.nextLine();
                     animal.setColor(scanner.nextLine());
                     animals.add(animal);
                     animal.say();
