@@ -1,7 +1,6 @@
-import data.AnimalData;
 import data.Command;
-import factory.AnimalFactory;
 import objects.Animal;
+import objects.AnimalForm;
 import table.AnimalTable;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -10,8 +9,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import static java.lang.String.valueOf;
-import static tools.Сhecks.askForAnimalType;
+
 
 public class MainRunner {
 
@@ -39,96 +37,35 @@ public class MainRunner {
             switch (typevalue) {
                 case ADD:
                     System.out.println("Вы ввели команду add");
-                    AnimalFactory animalFactory = new AnimalFactory(); //Создание экземпляра Animal
-                    AnimalData animalType = askForAnimalType(scanner); //Проверка типа животного
-                    Animal animal = animalFactory.create(animalType);
-                    animal.setType(valueOf(animalType)); //Установка типа животного для экземпляра Animal
-                    System.out.println("Укажите имя");
-                    animal.setName(scanner.nextLine());
-                    try {
-                        while (animal.getAge() == null) {
-                            System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
-                            animal.setAge(scanner.nextInt());
-                            if(animal.getAge() == null) {
-                                System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
-                            }
-                        }
-                    } catch (InputMismatchException e) {
-                        System.out.println("Ошибка! Введите корректное целое число");
-                        scanner.nextLine();
-                        continue;
-                    }
-                    try {
-                        while (animal.getWeight() == null) {
-                            System.out.println("Укажите вес. Вес должен быть больше 0");
-                            animal.setWeight(scanner.nextInt());
-                            if(animal.getWeight() == null) {
-                                System.out.println("Ошибка! Вес должен быть больше 0");
-                            }
-                        }
-                    } catch (InputMismatchException e) {
-                        System.out.println("Ошибка! Введите корректное целое число");
-                        scanner.next();
-                    }
-                    scanner.nextLine();
-                    System.out.println("Укажите цвет");
-                    animal.setColor(scanner.nextLine());
+                      Animal animal = AnimalForm.setAnimalClass(scanner); //Создание экземпляра Animal
+                    AnimalForm.setValidatedAnimal(scanner,animal); //Заполнение параметров животного: возраст, вес и т.д.
                     animals.add(animal);
                     animalTable.write(animal);
                     break;
                 case EDIT:
                     if(animals.size()==0){
-                        System.out.println("Нет животных для редактирвоания");
+                        System.out.println("Нет животных для редактирования");
                         continue;
                     }
                     Animal animalEdit = new Animal();
-                        while (animalEdit.getId() == null) {
+                    boolean exit=false;
+                        while (!exit) {
                             try {
                             System.out.println("Укажите ID животного");
                             animalEdit.setId(Integer.valueOf(scanner.nextInt()));
-                            if (valueOf(animalEdit.getId()) == null) {
+                            ResultSet rs = animalTable.selectId(animalEdit);
+                            if (!rs.next()) {
                                 System.out.println("Нет животного с таким ID");
                                 continue;
                             }
                         }catch (InputMismatchException e) {
                                 System.out.println("Ошибка! Введите корректное целое число");
-                                scanner.nextLine();
-                                continue;}
-                            ////Блок редактирвоания параметров
-                            scanner.nextLine();
-                            System.out.println("Укажите имя");
-                            animalEdit.setName(scanner.nextLine());
-                            System.out.println(animalEdit.getName());
-                            try {
-                                while (animalEdit.getAge() == null) {
-                                    System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
-                                    animalEdit.setAge(scanner.nextInt());
-                                    if(animalEdit.getAge() == null) {
-                                        System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
-                                    }
-                                }
-                            } catch (InputMismatchException e) {
-                                System.out.println("Ошибка! Введите корректное целое число");
-                                scanner.nextLine();
-                                continue;
-                            }
-                            try {
-                                while (animalEdit.getWeight() == null) {
-                                    System.out.println("Укажите вес. Вес должен быть больше 0");
-                                    animalEdit.setWeight(scanner.nextInt());
-                                    if(animalEdit.getWeight() == null) {
-                                        System.out.println("Ошибка! Вес должен быть больше 0");
-                                    }
-                                }
-                            } catch (InputMismatchException e) {
-                                System.out.println("Ошибка! Введите корректное целое число");
                                 scanner.next();
-                            }
+                                }
                             scanner.nextLine();
-                            System.out.println("Укажите цвет");
-                            animalEdit.setColor(scanner.nextLine());
+                            AnimalForm.setValidatedAnimal(scanner, animalEdit); //Редактирование параметров животного: возраст, вес и т.д.
                             animalTable.edit(animalEdit);
-                            ///Конец блока редактирвоаняи параметров
+                            exit=true;
                     }
                     break;
                 case LIST:
@@ -136,14 +73,12 @@ public class MainRunner {
                     System.out.println(animals);
                     if (animals.size() == 0) {
                         System.out.println("Вы еще не создали ни одного животного");
+                        continue;
                     }
                     ResultSet rs = animalTable.selectall();
                     animalTable.print(rs);
                     System.out.println("Фильтр по типу животного:");
-                    AnimalData listAnimalType = askForAnimalType(scanner);
-                    AnimalFactory listAnimalFactory = new AnimalFactory();
-                    Animal animalList = listAnimalFactory.create(listAnimalType);
-                    animalList.setType(valueOf(listAnimalType));
+                    Animal animalList = AnimalForm.setAnimalClass(scanner);
                     System.out.println(animalList.getType());
                     rs = animalTable.selectFilter(animalList);
                     animalTable.print(rs);

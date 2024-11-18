@@ -67,4 +67,8 @@ public class AnimalTable extends AbsTable {
     public ResultSet selectFilter(Animal animalList) {
         return dbConnector.executeQuery(String.format("SELECT * FROM %s WHERE Type='%s';",NAME,valueOf(animalList.getType())));
     }
+
+    public ResultSet selectId(Animal animal) {
+        return dbConnector.executeQuery(String.format("SELECT * FROM %s WHERE id='%s';",NAME,valueOf(animal.getId())));
+    }
 }
