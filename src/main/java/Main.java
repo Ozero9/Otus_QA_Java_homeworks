@@ -5,7 +5,6 @@ import factory.AnimalFactory;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static data.Command.EXIT;
 import static tools.Сhecks.askForAnimalType;
 
 public class Main {
@@ -31,16 +30,15 @@ public class Main {
                     System.out.println("Укажите имя");
                     animal.setName(scanner.nextLine());
                         while (animal.getAge() == null) {
-                            System.out.println("Укажите возраст. Возраст может быть в промежутке 0-10 лет");
+                            System.out.println("Укажите возраст. Возраст может быть в промежутке 1-10 лет");
                             try {
                             animal.setAge(scanner.nextInt());
                             if(animal.getAge() == null) {
-                                System.out.println("Ошибка! Возраст должен быть в промежутке 0-10 лет");
+                                System.out.println("Ошибка! Возраст должен быть в промежутке 1-10 лет");
                             }
                         } catch (InputMismatchException e) {
                                 System.out.println("Ошибка! Введите корректное целое число");
                                 scanner.nextLine();
-                                continue;
                             }
                     }
                         while (animal.getWeight() == null) {
@@ -62,10 +60,11 @@ public class Main {
                     animal.say();
                     break;
                 case LIST:
-                    System.out.println("Вы ввели команду list");
-                    System.out.println(animals);
+                    System.out.println("Вы ввели команду list \n");
+                    for (Animal i:animals){
+                    System.out.println(i+"\n");}
                     if (animals.size() == 0) {
-                        System.out.println("Вы еще не создали ни одного животного");
+                        System.out.println("Вы еще не создали ни одного животного \n");
                     }
                     break;
                 case EXIT:

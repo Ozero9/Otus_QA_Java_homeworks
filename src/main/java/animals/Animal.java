@@ -26,7 +26,7 @@ public abstract class Animal {
 
     public void setAge(Integer age) {
 
-            if (age >= 0 && age <= 10) {
+            if (age >= 1 && age <= 10) {
                 this.age = age;
             } else {
                 this.age = null;
