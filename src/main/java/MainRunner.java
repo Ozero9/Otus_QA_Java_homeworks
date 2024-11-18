@@ -69,15 +69,16 @@ public class MainRunner {
                     }
                     break;
                 case LIST:
-                    System.out.println("Вы ввели команду list");
-                    System.out.println(animals);
+                    System.out.println("Вы ввели команду list \n");
+                    for (Animal i:animals){
+                        System.out.println(i+"\n");}
                     if (animals.size() == 0) {
                         System.out.println("Вы еще не создали ни одного животного");
                         continue;
                     }
                     ResultSet rs = animalTable.selectall();
                     animalTable.print(rs);
-                    System.out.println("Фильтр по типу животного:");
+                    System.out.println("Фильтр по типу животного: \n");
                     Animal animalList = AnimalForm.setAnimalClass(scanner);
                     System.out.println(animalList.getType());
                     rs = animalTable.selectFilter(animalList);
