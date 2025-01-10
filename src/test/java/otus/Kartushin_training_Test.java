@@ -4,17 +4,16 @@ import factory.WebDriverFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
+
 public class Kartushin_training_Test {
 
     private static final Logger logger = LogManager.getLogger(Kartushin_training_Test.class);
-    public WebDriver driver;
+        public WebDriver driver;
     private String browserName = System.getProperty("browser");
     private String baseUrl = System.getProperty("base.url");
     private By message = By.cssSelector("input[id='textInput']"); //By.xpath("//input[@id='textInput']");
