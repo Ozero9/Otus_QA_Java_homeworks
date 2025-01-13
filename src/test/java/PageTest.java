@@ -15,6 +15,7 @@ public class PageTest {
     private static final Logger logger = LogManager.getLogger(FormPage.class);
     protected WebDriver driver;
 
+
     @BeforeEach
     public void setUp(){
         logger.info("Browser starting");
@@ -23,37 +24,38 @@ public class PageTest {
         String baseUrl = System.getProperty("baseUrl", "https://otus.home.kartushin.su/form.html");
 
         driver = WebDriverFactory.getDriver(browserName,typeWindow);
-        FormPage FormPage = new FormPage(driver);
-        FormPage.open(baseUrl);
+        FormPage formPage = new FormPage(driver);
+        formPage.open(baseUrl);
         logger.info("Browser started.");
     }
 
     @AfterEach
-    public void Down() {
-        FormPage FormPage = new FormPage(driver);
-        FormPage.close(driver);
+    public void down() {
+        FormPage formPage = new FormPage(driver);
+        formPage.close();
     }
 
     @Test
     public void testForm() throws InterruptedException {
         logger.info("Начало тестов");
+        FormPage formPage = new FormPage(driver);
         String username = System.getProperty("username");
         String email = System.getProperty("email");
         String password = System.getProperty("password");
         String birthdate = System.getProperty("birthdate");
         LanguageLevel languageLevel = LanguageLevel.NATIVE;
 
-        FormPage.enterInfo("username", username);
-        FormPage.enterInfo("email", email);
-        FormPage.enterInfo("password", password);
-        FormPage.enterInfo("confirm_password", password);
-        FormPage.enterInfo("birthdate", birthdate);
+        formPage.enterInfo("username", username);
+        formPage.enterInfo("email", email);
+        formPage.enterInfo("password", password);
+        formPage.enterInfo("confirm_password", password);
+        formPage.enterInfo("birthdate", birthdate);
 
-        FormPage.selectLanguageLevel(languageLevel);
+        formPage.selectLanguageLevel(languageLevel);
 
-        assertTrue(FormPage.isPasswordMatching(), "Пароли не совпадают!");
+        assertTrue(formPage.isPasswordMatching(), "Пароли не совпадают!");
 
-        FormPage.submitForm();
+        formPage.submitForm();
 
         logger.info("Проверка наличия имени пользователя на странице");
         assertTrue(driver.getPageSource().contains(username), "Имя пользователя не отображается на странице");

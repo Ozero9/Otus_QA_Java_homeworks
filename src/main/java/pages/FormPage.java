@@ -11,18 +11,11 @@ import org.openqa.selenium.support.ui.Select;
 public class FormPage extends BasePage{
 
     public FormPage(WebDriver driver) {
+
         super(driver);
     }
 
     private static final Logger logger = LogManager.getLogger(FormPage.class);
-
-//    private By username = By.id("username");
-//    private By email = By.id("email");
-//    private By password = By.id("password");
-//    private By confirmPassword = By.id("confirm-password");
-//    private By birthday = By.id("birthday");
-//    private By languageLevel = By.id("language_level");
-//    private By submit = By.cssSelector("submit");
 
     public static By getTextMode(String text){
         switch (text){
@@ -41,11 +34,10 @@ public class FormPage extends BasePage{
                 return By.id("language_level");
             case "submit":
                 return By.cssSelector("input[type='submit']");
-
         }
     }
 
-    public static void enterInfo(String text, String textInfo) {
+    public void enterInfo(String text, String textInfo) {
         try {
             logger.info("Entering info: " + text);
             driver.findElement(getTextMode(text)).sendKeys(textInfo);
@@ -54,15 +46,14 @@ public class FormPage extends BasePage{
         }
     }
 
-    public static void selectLanguageLevel(LanguageLevel level) {
+    public void selectLanguageLevel(LanguageLevel level) {
         logger.info("Отправка формы");
         WebElement dropdown = driver.findElement(getTextMode("language_level"));
         Select select = new Select(dropdown);
         select.selectByValue(level.getValue());
     }
 
-
-    public static void submitForm() {
+    public void submitForm() {
         try {
             logger.info("Отправка формы");
             driver.findElement(getTextMode("submit")).click();
@@ -71,13 +62,9 @@ public class FormPage extends BasePage{
         }
     }
 
-    public static boolean isPasswordMatching() {
+    public boolean isPasswordMatching() {
         String password = driver.findElement(getTextMode("password")).getAttribute("value");
         String confirmPassword = driver.findElement(getTextMode("confirm_password")).getAttribute("value");
         return password.equals(confirmPassword);
     }
-
-
-
-
 }

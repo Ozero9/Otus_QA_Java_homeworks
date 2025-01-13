@@ -1,5 +1,6 @@
 package factory;
 
+import exceptions.BrowserNotFoundException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,28 +12,24 @@ public class WebDriverFactory {
 
     public static WebDriver getDriver(String browserName, String typeWindow){
 
-        WebDriver driver;
-
         switch (browserName){
-            case"chrome":
-            default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeMode(chromeOptions,typeWindow);
-                driver = new ChromeDriver(chromeOptions);
-                break;
-
-            case "firefox":
+            case"chrome": {
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeSetting(chromeOptions, typeWindow);
+                    return new ChromeDriver(chromeOptions);
+            }
+            case "firefox": {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxSetting(firefoxOptions,typeWindow);
-                driver = new FirefoxDriver(firefoxOptions);
-                break;
+                firefoxSetting(firefoxOptions, typeWindow);
+                return new FirefoxDriver(firefoxOptions);
+            }
         }
-        return driver;
+        throw new BrowserNotFoundException(browserName);
     }
 
-    public static void chromeMode(ChromeOptions options, String typeWindow) {
+    public static void chromeSetting(ChromeOptions options, String typeWindow) {
 
         switch (typeWindow.toLowerCase()) {
             case "maximized":
@@ -65,6 +62,5 @@ public class WebDriverFactory {
                 options.addArguments("--kiosk");
                 break;
         }
-
     }
 }

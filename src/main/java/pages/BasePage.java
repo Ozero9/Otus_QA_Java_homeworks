@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class BasePage {
 
-    protected static WebDriver driver;
+    protected WebDriver driver;
     private static final Logger logger = LogManager.getLogger(BasePage.class);
 
     public BasePage(WebDriver driver){
@@ -17,12 +17,10 @@ public abstract class BasePage {
         driver.get(url);
     }
 
-    public void close(WebDriver driver){
+    public void close(){
         if (driver!= null) {
             logger.info("Browser closed");
             driver.quit();
         }
     }
-
-
 }
