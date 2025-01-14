@@ -80,9 +80,10 @@
                         <base.url>https://otus.home.kartushin.su/form.html</base.url>
                         <mode>headless</mode>
                         <username>Test</username>>
-                        <password>SDFSFWfdfs234234WRWR43!!!dfw3_!1aaaFew</password>
+                        <password></password>
                         <email>test@gmail.com</email>
                         <birthdate>01012000</birthdate>
+
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

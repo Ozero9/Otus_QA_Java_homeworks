@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PageTest {
 
     private static final Logger logger = LogManager.getLogger(FormPage.class);
-    protected WebDriver driver;
+    WebDriver driver;
 
 
     @BeforeEach
