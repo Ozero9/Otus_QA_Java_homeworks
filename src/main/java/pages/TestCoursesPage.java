@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-
 public class TestCoursesPage extends BasePage {
 
     public TestCoursesPage(WebDriver driver) {

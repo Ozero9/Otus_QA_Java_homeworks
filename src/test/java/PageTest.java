@@ -19,7 +19,7 @@ public class PageTest {
 
     @BeforeEach
     public void setUp() {
-        logger.info("Создагие браузера");
+        logger.info("Создание браузера");
         String browserName = System.getProperty("browser", "chrome");
         String typeWindow = System.getProperty("mode", "headless");
         String baseUrl = System.getProperty("base.url", "https://otus.ru/");
@@ -37,11 +37,13 @@ public class PageTest {
     @AfterEach
     public void down() {
         startOtusPage.close();
+        testCoursesPage.close();
+        calendarPage.close();
     }
 
     @Test
     public void checkTestCurses(){
-        logger.info("Начало тестов тестирвоания карточек курсов");
+        logger.info("Начало тестов карточек курсов");
         startOtusPage.enter_To_TestCourse(); //Переход на страницу тестирования
         testCoursesPage.openAllCurses(); //Раскрытие списка всех курсов тестирования
         testCoursesPage.countCards();//Подсчет числа карточек

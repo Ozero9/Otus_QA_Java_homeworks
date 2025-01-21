@@ -48,7 +48,7 @@ public class CalendarPage extends BasePage {
             try {
 
                 String dateText = date.getText();
-                logger.info("Дата мероприятия: " + dateText + " " + LocalDate.now().getYear() + "года");
+                logger.info("Дата мероприятия: " + dateText + " " + LocalDate.now().getYear() + " года");
                 LocalDate eventDate = LocalDate.parse(dateText + " " + LocalDate.now().getYear(), formatter);
                 if (eventDate.isBefore(currentDate)) {
                     logger.error("Мероприятие уже прошло: " + eventDate);
