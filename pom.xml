@@ -79,7 +79,7 @@
                         <browser>chrome</browser>
                         <base.url>https://otus.ru/</base.url>
                         <testCurse.url>https://otus.ru/catalog/courses?categories=testing</testCurse.url>
-                        <mode>maximized</mode>
+                        <mode>headless</mode>
                         <username>Test</username>>
                         <email>test@gmail.com</email>
                         <birthdate>01012000</birthdate>
