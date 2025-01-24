@@ -31,7 +31,7 @@ public class CalendarPage extends BasePage {
         try {
             logger.info("Подсчитываем количество событий");
             List<WebElement> cards = driver.findElements(calendarPage_AllCards);
-            Integer countCards = cards.size();
+            int countCards = cards.size();
             logger.info("Всего посчитано событий " + countCards);
             assertTrue(countCards > 0,
                     "\n а должно быть больше 0");

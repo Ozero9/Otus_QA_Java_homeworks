@@ -56,17 +56,17 @@ public class TestCoursesPage extends BasePage {
             List<WebElement> list = driver.findElements(coursesPage_AllCards);
             WebElement card = list.get(1);
             card.click();
-            Integer cardTitle = getElement(coursesPage_CardTitle).getText().length();
+            int cardTitle = getElement(coursesPage_CardTitle).getText().length();
             logger.info("Проверяем название");
             Assertions.assertTrue(cardTitle>0,"Название карточки не заполнено" );
             logger.info("Проверяем период");
-            Integer cardPeriod = getElement(coursesPage_CardPeriod).getText().length();
+            int cardPeriod = getElement(coursesPage_CardPeriod).getText().length();
             Assertions.assertTrue(cardPeriod>0,"Период не заполнен" );
             logger.info("Проверяем описание");
-            Integer cardInfo = getElement(coursesPage_CardInfo).getText().length();
+            int cardInfo = getElement(coursesPage_CardInfo).getText().length();
             Assertions.assertTrue(cardInfo>0,"Описание не заполнено" );
             logger.info("Проверяем формат");
-            Integer cardFormat = getElement(coursesPage_CardFormat).getText().length();
+            int cardFormat = getElement(coursesPage_CardFormat).getText().length();
             Assertions.assertTrue(cardFormat>0,"Формат не заполнен" );
 
         } catch (Exception e) {
