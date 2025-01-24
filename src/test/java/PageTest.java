@@ -9,13 +9,14 @@ import pages.CalendarPage;
 import pages.StartOtusPage;
 import pages.TestCoursesPage;
 
-public class PageTest {
+public class PageTest{
 
-    private static final Logger logger = LogManager.getLogger(StartOtusPage.class);
-    WebDriver driver;
-    StartOtusPage startOtusPage;
-    TestCoursesPage testCoursesPage;
-    CalendarPage calendarPage;
+    private WebDriver driver;
+    private StartOtusPage startOtusPage;
+    private TestCoursesPage testCoursesPage;
+    private CalendarPage calendarPage;
+
+    private static final Logger logger = LogManager.getLogger(PageTest.class);
 
     @BeforeEach
     public void setUp() {
@@ -23,12 +24,8 @@ public class PageTest {
         String browserName = System.getProperty("browser", "chrome");
         String typeWindow = System.getProperty("mode", "headless");
         String baseUrl = System.getProperty("base.url", "https://otus.ru/");
-
         driver = WebDriverFactory.getDriver(browserName, typeWindow);
-
         startOtusPage = new StartOtusPage(driver);
-        testCoursesPage = new TestCoursesPage(driver);
-        calendarPage = new CalendarPage(driver);
 
         logger.info("Открытие страницы");
         startOtusPage.open(baseUrl);
@@ -37,22 +34,22 @@ public class PageTest {
     @AfterEach
     public void down() {
         startOtusPage.close();
-        testCoursesPage.close();
-        calendarPage.close();
     }
 
     @Test
     public void checkTestCurses(){
         logger.info("Начало тестов карточек курсов");
+        testCoursesPage = new TestCoursesPage(driver);
         startOtusPage.enter_To_TestCourse(); //Переход на страницу тестирования
         testCoursesPage.openAllCurses(); //Раскрытие списка всех курсов тестирования
         testCoursesPage.countCards();//Подсчет числа карточек
-        testCoursesPage.infoCards();//Проверка карточкек
+        testCoursesPage.infoCards();//Проверка карточке
     }
 
     @Test
     public void checkCalendar(){
         logger.info("Начало теста проверки календаря");
+        calendarPage = new CalendarPage(driver);
         startOtusPage.enter_To_Calendar(); //Переход на страницу Календаря
         calendarPage.countEvents(); //Подсчет событий
         calendarPage.checkDate(); //Проверка дат
@@ -61,6 +58,7 @@ public class PageTest {
     @Test
     public void checkWebinars() {
         logger.info("Начало теста проверки вебинаров");
+        calendarPage = new CalendarPage(driver);
         startOtusPage.enter_To_Calendar(); //Переход на страницу Календаря
         calendarPage.enterToWebinars(); //Переход к открытым вебинарам
         calendarPage.openWebinars(); //Проверка типа вебинаров

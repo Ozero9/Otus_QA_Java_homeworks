@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CalendarPage extends BasePage {
 
     public CalendarPage(WebDriver driver) {
@@ -31,7 +33,7 @@ public class CalendarPage extends BasePage {
             List<WebElement> cards = driver.findElements(calendarPage_AllCards);
             Integer countCards = cards.size();
             logger.info("Всего посчитано событий " + countCards);
-            Assertions.assertTrue(countCards > 0,
+            assertTrue(countCards > 0,
                     "\n а должно быть больше 0");
         } catch (Exception e) {
             logger.error(
@@ -39,7 +41,7 @@ public class CalendarPage extends BasePage {
         }
     }
 
-    public boolean checkDate() {
+    public boolean searchDate() {
         logger.info("Проверка дат мероприятий");
         LocalDate currentDate = LocalDate.now(); //Устанавливаем текущую дату
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("ru"));
@@ -75,7 +77,7 @@ public class CalendarPage extends BasePage {
         }
     }
 
-    public boolean openWebinars() {
+    public boolean searchWebinars() {
         logger.info("Проверяем, что все вебинары открытые");
         List<WebElement> webinars = driver.findElements(calendarPage_OpenWebinarSelector);
 
@@ -91,5 +93,13 @@ public class CalendarPage extends BasePage {
         return true;
     }
 
+    public void openWebinars() {
+        assertTrue(searchWebinars(), "Некорректные даты мероприятий найдены!");
 
+    }
+
+    public void checkDate() {
+        assertTrue(searchDate(), "Некорректные даты мероприятий найдены!");
+
+    }
 }

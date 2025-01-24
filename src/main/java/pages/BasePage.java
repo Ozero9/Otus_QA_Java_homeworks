@@ -31,7 +31,7 @@ public abstract class BasePage {
     }
 
     public WebElement getElement(By locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(30)).
+        return new WebDriverWait(driver, Duration.ofSeconds(15)).
                 until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 

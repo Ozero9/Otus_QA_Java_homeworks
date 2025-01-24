@@ -13,9 +13,9 @@ public class StartOtusPage extends BasePage{
 
     private static final Logger logger = LogManager.getLogger(StartOtusPage.class);
 
-    //private By mainPage_OpenUpperMenu = By.cssSelector("span[title='Обучение']"); //Кнопка "Обучение" в верхнем трее
-    private By mainPage_OpenUpperMenu = By.cssSelector("div[class='sc-r03h0s-5 sc-1youhxc-2 cGgLky jMVjJA']"); //Кнопка "Обучение" в верхнем трее
-    private By mainPage_TestCourseButton = By.cssSelector("a[href='https://otus.ru/categories/testing']"); //Кнопка "Тестирвоание" в выпадаюем списке
+    private By mainPage_OpenUpperMenu = By.cssSelector("span[title='Обучение']"); //Кнопка "Обучение" в верхнем трее
+    //private By mainPage_OpenUpperMenu = By.xpath("header[@class='header3 js-header3']/div[1]/nav[1]/div[2]"); //Кнопка "Обучение" в верхнем трее
+    private By mainPage_TestCourseButton = By.xpath("//a[contains(text(),'Тестирование')]"); //Кнопка "Тестирвоание" в выпадаюем списке
     private By mainPage_CalendarButton = By.cssSelector("a[href='https://otus.ru/events/near']"); //Кнопка "События" в выпадаюем списке
     private By mainPage_CookieButton = By.cssSelector("button.sc-9a4spb-0.izekQs"); //Кнопка "Ок" принятия куков
 
